@@ -3,7 +3,7 @@ import subprocess
 import time
 
 REPO = "https://github.com/acoronadoc/python-deployment-script-sample.git"
-BRANCH = "master"
+BRANCH = "main"
 CHECK_INTERVAL = 5
 
 def exec( cmd, cwd=".", returnjson=False ):
@@ -42,20 +42,19 @@ last_commit = ""
 while True: 
     r = exec( [ "git", "ls-remote", "--heads", REPO ] )
     #print( r )
-
-    commits = r.stdout.splitlines()
-    commits = filter( lambda x: x.endswith( "refs/heads/" + BRANCH ), commits )
+    commits = ("%s" % r.stdout).splitlines()
+    commits = list( filter( lambda x: x.endswith( "refs/heads/" + BRANCH ), commits ) )
     commits = list( map( lambda x: x.split( "\t" ), commits ) )
 
     if last_commit != "" and last_commit != commits[0][0]:
        print( "Processint new commit: %s" % commits[0][0] )
 
-       last_commit = commits[0][0]
-
        process_pipeline()
     else:
        print( "No new commit found: %s" % last_commit )
 
+    if len( commits ) > 0:
+        last_commit = commits[0][0]
 
     time.sleep( CHECK_INTERVAL )
 
