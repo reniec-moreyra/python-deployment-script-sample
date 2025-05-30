@@ -28,9 +28,9 @@ def process_pipeline():
 
     r = exec( [ "git", "clone", REPO, "dir1" ] )
 
-    r = exec( [ "minikube kubectl", "apply", "-f", "kubernetes/sampleapp.yaml" ] )
+    r = exec( [ "minikube kubectl --", "apply", "-f", "kubernetes/sampleapp.yaml" ] )
 
-    r = exec( [ "minikube kubectl", "cp", "script.py", "nginx-statefulset-0:/usr/share/nginx/html" ] )
+    r = exec( [ "minikube kubectl --", "cp", "script.py", "nginx-statefulset-0:/usr/share/nginx/html" ] )
 
     r = exec( [ "/bin/bash", "-c" ,"minikube kubectl -- exec -it pod/nginx-statefulset-0 -- /bin/sh -c 'date > /usr/share/nginx/html/index.html'" ] )
     r = exec( [ "/bin/bash", "-c" ,"minikube kubectl -- exec -it pod/nginx-statefulset-0 -- /bin/sh -c 'echo '' >> /usr/share/nginx/html/index.html'" ] )
