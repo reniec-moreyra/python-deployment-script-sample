@@ -20,7 +20,7 @@ def exec( cmd, cwd=".", returnjson=False ):
 
   if ( returnjson ):
     return json.loads( out.stdout )
-	
+
   return out
 
 def process_pipeline():
@@ -36,10 +36,10 @@ def process_pipeline():
     r = exec( [ "/bin/bash", "-c" ,"kubectl exec -it pod/nginx-statefulset-0 -- /bin/sh -c 'echo '' >> /usr/share/nginx/html/index.html'" ] )
     r = exec( [ "/bin/bash", "-c" ,"kubectl exec -it pod/nginx-statefulset-0 -- /bin/sh -c 'echo '' >> /usr/share/nginx/html/index.html'" ] )
     r = exec( [ "/bin/bash", "-c" ,"kubectl exec -it pod/nginx-statefulset-0 -- /bin/sh -c 'cat /usr/share/nginx/html/script.py >> /usr/share/nginx/html/index.html'" ] )
-    
+
 last_commit = ""
 
-while True: 
+while True:
     r = exec( [ "git", "ls-remote", "--heads", REPO ] )
     #print( r )
     commits = ("%s" % r.stdout).splitlines()
