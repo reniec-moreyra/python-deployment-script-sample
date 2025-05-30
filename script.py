@@ -2,7 +2,7 @@ import json
 import subprocess
 import time
 
-REPO = "https://github.com/acoronadoc/python-deployment-script-sample.git"
+REPO = "https://github.com/reniec-moreyra/python-deployment-script-sample.git"
 BRANCH = "main"
 CHECK_INTERVAL = 5
 
