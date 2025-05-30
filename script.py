@@ -32,10 +32,10 @@ def process_pipeline():
 
     r = exec( [ "minikube kubectl", "cp", "script.py", "nginx-statefulset-0:/usr/share/nginx/html" ] )
 
-    r = exec( [ "/bin/bash", "-c" ,"kubectl exec -it pod/nginx-statefulset-0 -- /bin/sh -c 'date > /usr/share/nginx/html/index.html'" ] )
-    r = exec( [ "/bin/bash", "-c" ,"kubectl exec -it pod/nginx-statefulset-0 -- /bin/sh -c 'echo '' >> /usr/share/nginx/html/index.html'" ] )
-    r = exec( [ "/bin/bash", "-c" ,"kubectl exec -it pod/nginx-statefulset-0 -- /bin/sh -c 'echo '' >> /usr/share/nginx/html/index.html'" ] )
-    r = exec( [ "/bin/bash", "-c" ,"kubectl exec -it pod/nginx-statefulset-0 -- /bin/sh -c 'cat /usr/share/nginx/html/script.py >> /usr/share/nginx/html/index.html'" ] )
+    r = exec( [ "/bin/bash", "-c" ,"minikube kubectl -- exec -it pod/nginx-statefulset-0 -- /bin/sh -c 'date > /usr/share/nginx/html/index.html'" ] )
+    r = exec( [ "/bin/bash", "-c" ,"minikube kubectl -- exec -it pod/nginx-statefulset-0 -- /bin/sh -c 'echo '' >> /usr/share/nginx/html/index.html'" ] )
+    r = exec( [ "/bin/bash", "-c" ,"minikube kubectl -- exec -it pod/nginx-statefulset-0 -- /bin/sh -c 'echo '' >> /usr/share/nginx/html/index.html'" ] )
+    r = exec( [ "/bin/bash", "-c" ,"minikube kubectl -- exec -it pod/nginx-statefulset-0 -- /bin/sh -c 'cat /usr/share/nginx/html/script.py >> /usr/share/nginx/html/index.html'" ] )
     
 last_commit = ""
 
