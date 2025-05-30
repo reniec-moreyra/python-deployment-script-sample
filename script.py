@@ -20,7 +20,7 @@ def exec( cmd, cwd=".", returnjson=False ):
 
   if ( returnjson ):
     return json.loads( out.stdout )
-
+	
   return out
 
 def process_pipeline():
@@ -28,14 +28,14 @@ def process_pipeline():
 
     r = exec( [ "git", "clone", REPO, "dir1" ] )
 
-    r = exec( [ "minikube kubectl --", "apply", "-f", "kubernetes/sampleapp.yaml" ] )
+    r = exec( [ "kubectl", "apply", "-f", "kubernetes/sampleapp.yaml" ] )
 
-    r = exec( [ "minikube kubectl --", "cp", "script.py", "nginx-statefulset-0:/usr/share/nginx/html" ] )
+    r = exec( [ "kubectl", "cp", "script.py", "nginx-statefulset-0:/usr/share/nginx/html" ] )
 
-    r = exec( [ "/bin/bash", "-c" ,"minikube kubectl -- exec -it pod/nginx-statefulset-0 -- /bin/sh -c 'date > /usr/share/nginx/html/index.html'" ] )
-    r = exec( [ "/bin/bash", "-c" ,"minikube kubectl -- exec -it pod/nginx-statefulset-0 -- /bin/sh -c 'echo '' >> /usr/share/nginx/html/index.html'" ] )
-    r = exec( [ "/bin/bash", "-c" ,"minikube kubectl -- exec -it pod/nginx-statefulset-0 -- /bin/sh -c 'echo '' >> /usr/share/nginx/html/index.html'" ] )
-    r = exec( [ "/bin/bash", "-c" ,"minikube kubectl -- exec -it pod/nginx-statefulset-0 -- /bin/sh -c 'cat /usr/share/nginx/html/script.py >> /usr/share/nginx/html/index.html'" ] )
+    r = exec( [ "/bin/bash", "-c" ,"kubectl exec -it pod/nginx-statefulset-0 -- /bin/sh -c 'date > /usr/share/nginx/html/index.html'" ] )
+    r = exec( [ "/bin/bash", "-c" ,"kubectl exec -it pod/nginx-statefulset-0 -- /bin/sh -c 'echo '' >> /usr/share/nginx/html/index.html'" ] )
+    r = exec( [ "/bin/bash", "-c" ,"kubectl exec -it pod/nginx-statefulset-0 -- /bin/sh -c 'echo '' >> /usr/share/nginx/html/index.html'" ] )
+    r = exec( [ "/bin/bash", "-c" ,"kubectl exec -it pod/nginx-statefulset-0 -- /bin/sh -c 'cat /usr/share/nginx/html/script.py >> /usr/share/nginx/html/index.html'" ] )
     
 last_commit = ""
 
